@@ -60,7 +60,7 @@ resource "google_compute_network_peering" "custom-vpc4-custom" {
   peer_network = google_compute_network.vpc3-custom.self_link
 }
 
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "instance1" {
   name         = "instance-vpc-automation1"
   machine_type = "e2-medium"
   zone        = "us-west1"
@@ -85,7 +85,7 @@ resource "google_compute_instance" "default" {
   }
 }
 
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "instance2" {
   name         = "instance-vpc-automation2"
   machine_type = "e2-medium"
   zone        = "us-east1"
