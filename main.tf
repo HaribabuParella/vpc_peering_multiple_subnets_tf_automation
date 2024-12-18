@@ -77,7 +77,7 @@ resource "google_compute_instance" "instance1" {
 
   network_interface {
     network = google_compute_network.vpc3-custom.name
-    subnetwork = google_compute_subnetwork.vpc3-subnetwork1.name
+    subnetwork = google_compute_subnetwork.vpc3-custom-subnet1.name
 
     access_config {
       // Ephemeral public IP
@@ -102,7 +102,7 @@ resource "google_compute_instance" "instance2" {
 
   network_interface {
     network = google_compute_network.vpc4-custom.name
-    subnetwork = google_compute_subnetwork.vpc4-subnetwork1.name
+    subnetwork = google_compute_subnetwork.vpc4-custom-subnet1.name
 
     access_config {
       // Ephemeral public IP
