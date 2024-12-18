@@ -59,3 +59,53 @@ resource "google_compute_network_peering" "custom-vpc4-custom" {
   network      = google_compute_network.vpc4-custom.self_link
   peer_network = google_compute_network.vpc3-custom.self_link
 }
+
+resource "google_compute_instance" "default" {
+  name         = "instance-vpc-automation1"
+  machine_type = "e2-medium"
+  zone        = "us-west1"
+
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+      labels = {
+        my_label = "value"
+      }
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc3-custom.name
+    subnetwork = google_compute_subnetwork.vpc3-subnetwork1.name
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+}
+
+resource "google_compute_instance" "default" {
+  name         = "instance-vpc-automation2"
+  machine_type = "e2-medium"
+  zone        = "us-east1"
+
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+      labels = {
+        my_label = "value"
+      }
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc4-custom.name
+    subnetwork = google_compute_subnetwork.vpc4-subnetwork1.name
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+}
